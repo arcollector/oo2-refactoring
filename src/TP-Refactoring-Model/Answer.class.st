@@ -31,8 +31,8 @@ Answer >> description [
 ]
 
 { #category : #private }
-Answer >> description: anObject [
-	description := anObject
+Answer >> description: aString [
+	description := aString
 ]
 
 { #category : #initialize }

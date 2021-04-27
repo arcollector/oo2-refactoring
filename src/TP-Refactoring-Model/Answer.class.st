@@ -21,8 +21,8 @@ Answer class >> new: anAnswer user: aUser question: aQuestion [
 ]
 
 { #category : #adding }
-Answer >> addVote: aVoto [
- votes add: aVoto
+Answer >> addVote: aVote [
+ votes add: aVote
 ]
 
 { #category : #accessing }

@@ -12,9 +12,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-Answer class >> new: anAnswer user: aUser question: aQuestion [
+Answer class >> newWithDescription: aString user: aUser question: aQuestion [
 	^ self new
-		description: anAnswer;
+		description: aString;
 		user: aUser;
 		question: aQuestion;
 		yourself
@@ -84,8 +84,8 @@ Answer >> user [
 ]
 
 { #category : #private }
-Answer >> user: anObject [
-	user := anObject
+Answer >> user: anUser [
+	user := anUser
 ]
 
 { #category : #accessing }

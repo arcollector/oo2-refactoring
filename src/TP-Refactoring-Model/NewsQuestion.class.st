@@ -1,6 +1,9 @@
 Class {
 	#name : #NewsQuestion,
 	#superclass : #QuestionRetriever,
+	#instVars : [
+		'cuoora'
+	],
 	#category : #'TP-Refactoring-Model'
 }
 
@@ -10,14 +13,15 @@ NewsQuestion class >> new: cuoora [
 ]
 
 { #category : #retrieving }
-NewsQuestion >> retrieveQuestions: aUser [
-	| qRet temp   newsCol |
-	qRet := OrderedCollection new.
-	
-			newsCol := OrderedCollection new.
-			cuoora questions do:[:q | (q timestamp asDate = Date today) ifTrue: [newsCol add: q]].
-			temp := newsCol asSortedCollection:[ :a :b | a positiveVotes size > b positiveVotes size ].
-			qRet := temp last: (100 min: temp size).
+NewsQuestion >> cuoora: aCuooraInstance [
+	cuoora := aCuooraInstance
+]
 
-	^qRet reject:[:q | q user = aUser].
+{ #category : #retrieving }
+NewsQuestion >> retrieveQuestions: aUser [
+| todayQuestions latestQuestions |
+	todayQuestions := self sortQuestionsByPositiveVotes: cuoora getTodayQuestions.
+	latestQuestions := self getLatest: todayQuestions.
+	^ self removeQuestions: latestQuestions with: aUser
+
 ]

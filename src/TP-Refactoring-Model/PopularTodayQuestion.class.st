@@ -1,6 +1,9 @@
 Class {
 	#name : #PopularTodayQuestion,
 	#superclass : #QuestionRetriever,
+	#instVars : [
+		'cuoora'
+	],
 	#category : #'TP-Refactoring-Model'
 }
 
@@ -10,19 +13,31 @@ PopularTodayQuestion class >> new: cuoora [
 ]
 
 { #category : #retrieving }
+PopularTodayQuestion >> calculateAverageVotes: size [ 
+	^cuoora calculateTotalPositiveVotes / size.
+]
+
+{ #category : #retrieving }
+PopularTodayQuestion >> cuoora: aCuooraInstance [
+	cuoora := aCuooraInstance
+]
+
+{ #category : #retrieving }
+PopularTodayQuestion >> filter: questions byPositiveVotes: aNumber [
+^(questions select: [ :q | q positiveVotes size >= aNumber ])
+	
+]
+
+{ #category : #retrieving }
 PopularTodayQuestion >> retrieveQuestions: aUser [
-	| qRet temp  popularTCol averageVotes |
-	qRet := OrderedCollection new.
-	popularTCol := OrderedCollection new.
-	cuoora questions
-		do: [ :q | 
-			q timestamp asDate = Date today
-				ifTrue: [ popularTCol add: q ] ].
-	averageVotes := (cuoora questions sum: [ :q | q positiveVotes size ])
-		/ popularTCol size.
-	temp := (popularTCol
-		select: [ :q | q positiveVotes size >= averageVotes ])
-		asSortedCollection: [ :a :b | a positiveVotes size > b positiveVotes size ].
-	qRet := temp last: (100 min: temp size).
-	^ qRet reject: [ :q | q user = aUser ]
+	| latestQuestions sortedQuestions filteredQuestions averageVotes |
+	averageVotes := self
+		calculateAverageVotes: cuoora getTodayQuestions size. "esto va a CuOOra"
+	filteredQuestions := self
+		filter: cuoora getTodayQuestions
+		byPositiveVotes: averageVotes.
+	sortedQuestions := self
+		sortQuestionsByPositiveVotes: filteredQuestions.
+	latestQuestions := self getLatest: sortedQuestions.
+	^ self removeQuestions: latestQuestions with: aUser
 ]

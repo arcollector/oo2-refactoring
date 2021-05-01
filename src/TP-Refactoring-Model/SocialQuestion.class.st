@@ -11,8 +11,7 @@ SocialQuestion >> retrieveQuestions: aUser [
 	followingCol := OrderedCollection new.
 	aUser following
 		do: [ :follow | followingCol addAll: follow questions ].
-	temp := followingCol
-		asSortedCollection: [ :a :b | a positiveVotes size > b positiveVotes size ].
-	qRet := temp last: (100 min: temp size).
-	^ qRet reject: [ :q | q user = aUser ]
+	temp := self sortQuestionsByPositiveVotes: followingCol .
+	qRet := self getLatest: temp.
+	^ self removeQuestions: qRet with: aUser. 
 ]

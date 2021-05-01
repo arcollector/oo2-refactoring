@@ -6,11 +6,9 @@ Class {
 
 { #category : #retrieving }
 TopicQuestion >> retrieveQuestions: aUser [
-	| qRet temp topicsCol |
-	qRet := OrderedCollection new.
-	topicsCol := OrderedCollection new.
-	aUser topics do: [ :topic | topicsCol addAll: topic questions ].
-	temp := self sortQuestionsByPositiveVotes: topicsCol.
-	qRet := self getLatest: temp.
-	^ self removeQuestions: qRet with: aUser. 
+	| sortedQuestions latestQuestions |
+	sortedQuestions := self
+		sortQuestionsByPositiveVotes: aUser getTopicQuestions.
+	latestQuestions := self getLatest: sortedQuestions.
+	^ self removeQuestions: latestQuestions with: aUser
 ]

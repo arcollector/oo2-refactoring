@@ -27,5 +27,5 @@ QuestionRetriever >> retrieveQuestions: aUser [
 { #category : #retrieving }
 QuestionRetriever >> sortQuestionsByPositiveVotes: questions [
 	^ questions
-		asSortedCollection: [ :a :b | a positiveVotes size > b positiveVotes size ] "estos size mandarlos a question"
+		asSortedCollection: [ :a :b | a calculatePositiveVotes  > b calculatePositiveVotes  ]
 ]

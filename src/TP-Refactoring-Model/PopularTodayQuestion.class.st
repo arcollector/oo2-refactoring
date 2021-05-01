@@ -13,8 +13,8 @@ PopularTodayQuestion class >> new: cuoora [
 ]
 
 { #category : #retrieving }
-PopularTodayQuestion >> calculateAverageVotes: size [ 
-	^cuoora calculateTotalPositiveVotes / size.
+PopularTodayQuestion >> calculateAverageVotes [
+	^ cuoora calculateTotalPositiveVotes / cuoora getTodayQuestionsCount
 ]
 
 { #category : #retrieving }
@@ -23,21 +23,16 @@ PopularTodayQuestion >> cuoora: aCuooraInstance [
 ]
 
 { #category : #retrieving }
-PopularTodayQuestion >> filter: questions byPositiveVotes: aNumber [
-^(questions select: [ :q | q positiveVotes size >= aNumber ])
-	
+PopularTodayQuestion >> getRelevantQuestions [
+	^ cuoora getTodayQuestions
+		select: [ :q | q calculatePositiveVotes  >= self calculateAverageVotes ]
 ]
 
 { #category : #retrieving }
 PopularTodayQuestion >> retrieveQuestions: aUser [
-	| latestQuestions sortedQuestions filteredQuestions averageVotes |
-	averageVotes := self
-		calculateAverageVotes: cuoora getTodayQuestions size. "esto va a CuOOra"
-	filteredQuestions := self
-		filter: cuoora getTodayQuestions
-		byPositiveVotes: averageVotes.
+	| latestQuestions sortedQuestions  |
 	sortedQuestions := self
-		sortQuestionsByPositiveVotes: filteredQuestions.
+		sortQuestionsByPositiveVotes: self getRelevantQuestions.
 	latestQuestions := self getLatest: sortedQuestions.
 	^ self removeQuestions: latestQuestions with: aUser
 ]

@@ -60,6 +60,18 @@ User >> following [
 	^ following
 ]
 
+{ #category : #accessing }
+User >> getFollowingQuestions [
+	^following flatCollect: [:each | each questions  ]
+
+]
+
+{ #category : #accessing }
+User >> getTopicQuestions [
+^topics flatCollect: [ :each | each questions ]
+
+]
+
 { #category : #initialize }
 User >> initialize [
 

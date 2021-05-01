@@ -34,12 +34,17 @@ CuOOra >> addUser: aUser [
 
 { #category : #accessing }
 CuOOra >> calculateTotalPositiveVotes [
-^questions sum: [ :q | q positiveVotes size ]
+	^ questions sum: [ :q | q calculatePositiveVotes  ]
 ]
 
 { #category : #adding }
 CuOOra >> getTodayQuestions [
 	^questions select: [ :q | q timestamp asDate = Date today ]
+]
+
+{ #category : #adding }
+CuOOra >> getTodayQuestionsCount [
+	^self getTodayQuestions size.
 ]
 
 { #category : #initialize }

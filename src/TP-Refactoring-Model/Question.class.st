@@ -44,6 +44,11 @@ Question >> addVote: aVote [
 	votes add: aVote
 ]
 
+{ #category : #'as yet unclassified' }
+Question >> calculatePositiveVotes [
+^self positiveVotes size
+]
+
 { #category : #accessing }
 Question >> description [
 	^ description

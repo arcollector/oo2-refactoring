@@ -1,35 +1,29 @@
 Class {
 	#name : #Question,
-	#superclass : #Object,
+	#superclass : #Post,
 	#instVars : [
 		'title',
 		'answers',
-		'topics',
-		'timestamp',
-		'user',
-		'votes',
-		'description'
+		'topics'
 	],
 	#category : #'TP-Refactoring-Model'
 }
 
 { #category : #'instance creation' }
 Question class >> newWithTitle: title description: aDescription user: aUser [
-	^ self new
-		title: title;
-		description: aDescription;
-		user: aUser;
-		yourself.
+	^ self new initializeWithTitle: title description:aDescription   user: aUser; 
+		yourself
 ]
 
 { #category : #'instance creation' }
 Question class >> newWithTitle: title description: aDescription user: aUser topic: aTopic [
 	^ self new
-		title: title;
-		description: aDescription;
-		addTopic: aTopic;
-		user: aUser;
-		yourself.
+		initializeWithTitle: title
+			description: aDescription
+			user: aUser;
+			addTopic: aTopic;
+			yourself.
+		
 ]
 
 { #category : #adding }
@@ -39,24 +33,9 @@ Question >> addTopic: aTopic [
 
 ]
 
-{ #category : #adding }
-Question >> addVote: aVote [
-	votes add: aVote
-]
-
 { #category : #'as yet unclassified' }
 Question >> calculatePositiveVotes [
 ^self positiveVotes size
-]
-
-{ #category : #accessing }
-Question >> description [
-	^ description
-]
-
-{ #category : #private }
-Question >> description: anObject [
-	description := anObject
 ]
 
 { #category : #'initalize-release' }
@@ -68,23 +47,10 @@ Question >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-Question >> negativeVotes [
-	^votes reject: [ :vote | vote isLike ]
-]
-
-{ #category : #'as yet unclassified' }
-Question >> positiveVotes [
-	^votes select: [ :vote | vote isLike ].
-]
-
-{ #category : #accessing }
-Question >> timestamp [
-	^ timestamp
-]
-
-{ #category : #private }
-Question >> timestamp: anObject [
-	timestamp := anObject
+Question >> initializeWithTitle: aTitle description: aDescription user: aUser [
+title:= aTitle.
+description := aDescription .
+user:= aUser.
 ]
 
 { #category : #accessing }
@@ -93,26 +59,6 @@ Question >> title [
 ]
 
 { #category : #accessing }
-Question >> title: aTitle [
-	title := aTitle 
-]
-
-{ #category : #accessing }
 Question >> topics [
 	^topics 
-]
-
-{ #category : #accessing }
-Question >> user [
-	^ user
-]
-
-{ #category : #private }
-Question >> user: anObject [
-	user := anObject
-]
-
-{ #category : #accessing }
-Question >> votes [
-	^ votes
 ]

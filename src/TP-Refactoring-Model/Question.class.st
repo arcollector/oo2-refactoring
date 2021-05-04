@@ -53,6 +53,11 @@ description := aDescription .
 user:= aUser.
 ]
 
+{ #category : #'as yet unclassified' }
+Question >> isFromToday [
+	^timestamp asDate = Date today
+]
+
 { #category : #accessing }
 Question >> title [
 	^title 

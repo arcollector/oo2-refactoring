@@ -39,7 +39,7 @@ CuOOra >> calculateTotalPositiveVotes [
 
 { #category : #adding }
 CuOOra >> getTodayQuestions [
-	^questions select: [ :q | q timestamp asDate = Date today ]
+	^ questions select: [ :q | q isFromToday  ]
 ]
 
 { #category : #adding }

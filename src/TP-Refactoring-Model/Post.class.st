@@ -35,11 +35,6 @@ Post >> timestamp [
 	^ timestamp
 ]
 
-{ #category : #private }
-Post >> timestamp: anObject [
-	timestamp := anObject
-]
-
 { #category : #accessing }
 Post >> user [
 	^ user

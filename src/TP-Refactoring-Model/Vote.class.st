@@ -11,19 +11,17 @@ Class {
 }
 
 { #category : #'instance creation' }
-Vote class >> user: aUser dislikesPublication: aPublication [
+Vote class >> newWithUser: aUser dislikesPost: aPost [
 	^ self new
-		user: aUser;
-		publication: aPublication;
+		initializeWithUser: aUser post: aPost;
 		dislike;
 		yourself
 ]
 
 { #category : #'instance creation' }
-Vote class >> user: aUser likesPublication: aPublication [
+Vote class >> newWithUser: aUser likesPost: aPost [
 	^ self new
-		user: aUser;
-		publication: aPublication;
+		initializeWithUser: aUser post: aPost;
 		yourself
 ]
 
@@ -37,6 +35,12 @@ Vote >> initialize [
 	isLike := true.
 	timstamp := DateAndTime now.
 	
+]
+
+{ #category : #private }
+Vote >> initializeWithUser: aUser post: aPost [
+	user := aUser.
+	publication := aPost
 ]
 
 { #category : #accessing }

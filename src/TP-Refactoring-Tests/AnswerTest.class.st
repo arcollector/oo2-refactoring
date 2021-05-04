@@ -14,10 +14,10 @@ AnswerTest >> setUp [
 
 { #category : #testing }
 AnswerTest >> testNegativeVotes [		
-	answer addVote: (Vote user: (User new) dislikesPublication: answer).
+	answer addVote: (Vote newWithUser: (User new) dislikesPost: answer).
 	self assert: (answer negativeVotes size) equals: 1.
 	
-	answer addVote: (Vote user: (User new) dislikesPublication: answer).
+	answer addVote: (Vote newWithUser: (User new) dislikesPost: answer).
 	self assert: (answer negativeVotes size) equals: 2.
 
 ]
@@ -25,16 +25,16 @@ AnswerTest >> testNegativeVotes [
 { #category : #testing }
 AnswerTest >> testPositiveAndNegativeVotesInterference [
 	
-	answer addVote: (Vote user: (User new) dislikesPublication: answer).
+	answer addVote: (Vote newWithUser: (User new) dislikesPost: answer).
 	self assert: (answer positiveVotes size) equals: 0.
 	
-	answer addVote: (Vote user: (User new) likesPublication: answer).	
+	answer addVote: (Vote newWithUser: (User new) likesPost: answer).	
 	self assert: (answer positiveVotes size) equals: 1.
 	
-	answer addVote: (Vote user: (User new) likesPublication: answer).	
+	answer addVote: (Vote newWithUser: (User new) likesPost: answer).	
 	self assert: (answer positiveVotes size) equals: 2.
 	
-	answer addVote: (Vote user: (User new) dislikesPublication: answer).
+	answer addVote: (Vote newWithUser: (User new) dislikesPost: answer).
 	self assert: (answer positiveVotes size) equals: 2.
 	
 	self assert: answer votes size equals: 4.
@@ -42,10 +42,10 @@ AnswerTest >> testPositiveAndNegativeVotesInterference [
 
 { #category : #testing }
 AnswerTest >> testPositiveVotes [
-	answer addVote: (Vote user: (User new) likesPublication: answer).	
+	answer addVote: (Vote newWithUser: (User new) likesPost: answer).	
 	self assert: (answer positiveVotes size) equals: 1.
 	
-	answer addVote: (Vote user: (User new) likesPublication: answer).	
+	answer addVote: (Vote newWithUser: (User new) likesPost: answer).	
 	self assert: (answer positiveVotes size) equals: 2.
 	
 ]

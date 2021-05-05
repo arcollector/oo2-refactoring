@@ -3,8 +3,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'isLike',
-		'timstamp',
-		'publication',
+		'timestamp',
+		'post',
 		'user'
 	],
 	#category : #'TP-Refactoring-Model'
@@ -33,14 +33,13 @@ Vote >> dislike [
 { #category : #initialize }
 Vote >> initialize [
 	isLike := true.
-	timstamp := DateAndTime now.
-	
+	timestamp := DateAndTime now
 ]
 
 { #category : #private }
 Vote >> initializeWithUser: aUser post: aPost [
 	user := aUser.
-	publication := aPost
+	post := aPost
 ]
 
 { #category : #accessing }
@@ -54,21 +53,11 @@ Vote >> like [
 ]
 
 { #category : #accessing }
-Vote >> publication [
-	^ publication
-]
-
-{ #category : #private }
-Vote >> publication: anObject [
-	publication := anObject
+Vote >> post [
+	^ post
 ]
 
 { #category : #accessing }
 Vote >> user [
 	^ user
-]
-
-{ #category : #private }
-Vote >> user: anObject [
-	user := anObject
 ]

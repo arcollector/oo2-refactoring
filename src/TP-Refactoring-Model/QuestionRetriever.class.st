@@ -4,11 +4,6 @@ Class {
 	#category : #'TP-Refactoring-Model'
 }
 
-{ #category : #'instance creation' }
-QuestionRetriever class >> new: cuoora and: aSymbol [
-	^ self new cuoora: cuoora; option:aSymbol; yourself.
-]
-
 { #category : #retrieving }
 QuestionRetriever >> getLatest: questions [ 
 ^questions last: (100 min: questions  size).

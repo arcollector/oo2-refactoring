@@ -19,9 +19,6 @@ NewsQuestion >> cuoora: aCuooraInstance [
 
 { #category : #retrieving }
 NewsQuestion >> retrieveQuestions: aUser [
-| todayQuestions latestQuestions |
-	todayQuestions := self sortQuestionsByPositiveVotes: cuoora getTodayQuestions.
-	latestQuestions := self getLatest: todayQuestions.
-	^ self removeQuestions: latestQuestions with: aUser
+	^ self getQuestions: cuoora getTodayQuestions with: aUser
 
 ]

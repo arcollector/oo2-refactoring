@@ -6,9 +6,5 @@ Class {
 
 { #category : #retrieving }
 TopicQuestion >> retrieveQuestions: aUser [
-	| sortedQuestions latestQuestions |
-	sortedQuestions := self
-		sortQuestionsByPositiveVotes: aUser getTopicQuestions.
-	latestQuestions := self getLatest: sortedQuestions.
-	^ self removeQuestions: latestQuestions with: aUser
+	^ self getQuestions: aUser getTopicQuestions with: aUser
 ]

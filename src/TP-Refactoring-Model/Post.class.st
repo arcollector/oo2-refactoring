@@ -20,6 +20,12 @@ Post >> description [
 	^ description
 ]
 
+{ #category : #accessing }
+Post >> initializeShared [
+votes := OrderedCollection new.
+	timestamp := DateAndTime now
+]
+
 { #category : #'as yet unclassified' }
 Post >> negativeVotes [
 	^ votes reject: [ :vote | vote isLike ]

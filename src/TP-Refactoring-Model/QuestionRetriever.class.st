@@ -5,8 +5,17 @@ Class {
 }
 
 { #category : #retrieving }
-QuestionRetriever >> getLatest: questions [ 
-^questions last: (100 min: questions  size).
+QuestionRetriever >> getLatest: questions [
+	^ questions last: (100 min: questions size)"reinventa la rueda"
+]
+
+{ #category : #retrieving }
+QuestionRetriever >> getQuestions: questions with:aUser [ 
+|todayQuestions latestQuestions |
+todayQuestions := self
+		sortQuestionsByPositiveVotes: questions.
+	latestQuestions := self getLatest: todayQuestions.
+	^ self removeQuestions: latestQuestions with: aUser
 ]
 
 { #category : #retrieving }

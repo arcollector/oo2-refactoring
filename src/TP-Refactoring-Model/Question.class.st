@@ -42,15 +42,14 @@ Question >> calculatePositiveVotes [
 Question >> initialize [
 	answers := OrderedCollection new.
 	topics := OrderedCollection new.
-	votes := OrderedCollection new.
-	timestamp := DateAndTime now.
+	self initializeShared .
 ]
 
 { #category : #'as yet unclassified' }
 Question >> initializeWithTitle: aTitle description: aDescription user: aUser [
-title:= aTitle.
-description := aDescription .
-user:= aUser.
+	title := aTitle.
+	description := aDescription.
+	user := aUser
 ]
 
 { #category : #'as yet unclassified' }

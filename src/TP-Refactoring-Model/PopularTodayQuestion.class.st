@@ -30,9 +30,6 @@ PopularTodayQuestion >> getRelevantQuestions [
 
 { #category : #retrieving }
 PopularTodayQuestion >> retrieveQuestions: aUser [
-	| latestQuestions sortedQuestions  |
-	sortedQuestions := self
-		sortQuestionsByPositiveVotes: self getRelevantQuestions.
-	latestQuestions := self getLatest: sortedQuestions.
-	^ self removeQuestions: latestQuestions with: aUser
+^self getQuestions: self getRelevantQuestions  with: aUser.
+
 ]

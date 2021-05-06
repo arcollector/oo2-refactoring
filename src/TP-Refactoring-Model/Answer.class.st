@@ -14,8 +14,7 @@ Answer class >> newWithDescription: aString user: aUser question: aQuestion [
 
 { #category : #initialize }
 Answer >> initialize [
-	votes := OrderedCollection new.
-	timestamp := DateAndTime now.
+	self initializeShared 
 ]
 
 { #category : #accessing }

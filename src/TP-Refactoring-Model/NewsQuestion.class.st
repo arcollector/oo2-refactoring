@@ -17,8 +17,7 @@ NewsQuestion >> cuoora: aCuooraInstance [
 	cuoora := aCuooraInstance
 ]
 
-{ #category : #retrieving }
-NewsQuestion >> retrieveQuestions: aUser [
-	^ self getQuestions: cuoora getTodayQuestions with: aUser
-
+{ #category : #'as yet unclassified' }
+NewsQuestion >> getQuestions: aUser [
+	^ cuoora getTodayQuestions
 ]

@@ -22,14 +22,8 @@ PopularTodayQuestion >> cuoora: aCuooraInstance [
 	cuoora := aCuooraInstance
 ]
 
-{ #category : #retrieving }
-PopularTodayQuestion >> getRelevantQuestions [
+{ #category : #'as yet unclassified' }
+PopularTodayQuestion >> getQuestions: aUser [
 	^ cuoora getTodayQuestions
 		select: [ :q | q calculatePositiveVotes  >= self calculateAverageVotes ]
-]
-
-{ #category : #retrieving }
-PopularTodayQuestion >> retrieveQuestions: aUser [
-^self getQuestions: self getRelevantQuestions  with: aUser.
-
 ]

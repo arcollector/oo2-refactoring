@@ -4,7 +4,7 @@ Class {
 	#category : #'TP-Refactoring-Model'
 }
 
-{ #category : #retrieving }
-SocialQuestion >> retrieveQuestions: aUser [
-^self getQuestions: aUser getFollowingQuestions  with: aUser
+{ #category : #'as yet unclassified' }
+SocialQuestion >> getQuestions: aUser [
+	^ aUser getFollowingQuestions.
 ]
